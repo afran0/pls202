@@ -8,10 +8,6 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-Welcome to the first assignment! Please answer all the questions below by creating a .Rmd script with the necessary lines of code to solve the problems. You need to download and load the corresponding .RData file from D2L. There should be no extra lines of code in the script (i.e. nothing with mistakes or unnecessary commands). Use comments (lines that begin with #) to break up the document by question, and to provide your answers. When you are done, knit the document (as shown in lecture) and turn in the resulting PDF.
-
-Load the data
-
 ```{r}
 load('m1_assignment.RData')
 ```
