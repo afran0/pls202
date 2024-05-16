@@ -1,0 +1,100 @@
+---
+title: "Module 1 Assignment"
+author: "Anna Francisco"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Welcome to the first assignment! Please answer all the questions below by creating a .Rmd script with the necessary lines of code to solve the problems. You need to download and load the corresponding .RData file from D2L. There should be no extra lines of code in the script (i.e. nothing with mistakes or unnecessary commands). Use comments (lines that begin with #) to break up the document by question, and to provide your answers. When you are done, knit the document (as shown in lecture) and turn in the resulting PDF.
+
+Load the data
+
+```{r}
+load('m1_assignment.RData')
+```
+
+
+# Question 1
+
+1. Create an object called `my_first_vector`. Assign this vector the values 5 through 20, using the `:` operator.
+
+```{r}
+my_first_vector <- 5:20
+```
+
+2. What is the length of this vector?
+
+```{r}
+length(my_first_vector)
+```
+
+
+3. Create an object called `my_second_vector`, whose values are all double those of the first vector. Do not use `c()` or the `:` operator. 
+```{r}
+my_second_vector <- my_first_vector * 2
+```
+4. What is the length of this vector? Does it make sense that they are the same?
+```{r}
+length(my_second_vector)
+#the length makes sense since you are just multiplying every value in the vector by 2, so the length doesn't change
+```
+5. Create one last vector called `super_vector` which is a combination of the first two. What is its length?
+```{r}
+super_vector <- c(my_first_vector, my_second_vector)
+length(super_vector)
+```
+
+# Question 2
+
+There is an object already loaded in your R session (assuming you correctly downloaded and opened the RMD file) called `prime_ministers `. In it are the first five Prime Ministers of Canada.
+
+1. Using subsetting `[ ]`, who was the second Prime Minster of Canada?
+```{r}
+prime_ministers[2]
+```
+2. Who were the fourth and fifth Prime Ministers of Canada? Answer this question with only one line of code.
+```{r}
+prime_ministers[4:5]
+```
+3. Create a new object called `first_pm` that takes the value of the first Prime Minister of Canada (i.e. the first element of the `prime_ministers` vector.). Print the objects value.
+```{r}
+first_pm = prime_ministers[1]
+first_pm
+```
+
+# Question 3
+
+There is another vector loaded called `weather`. It contains the temperatures of each day of the week, starting on Sunday.
+
+1. I wrote this assignment too fast! I forgot the names for each day of the week. Create names for the vector that tell us which day of the week each temperature corresponds to (again, the week starts on Sunday)
+```{r}
+day <- c('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday')
+names(weather) <- day
+```
+2. What was the average temperature of that week?
+```{r}
+mean_temperature <- mean(weather)
+mean_temperature
+```
+3. Which day had the hottest temperature? The coldest?
+```{r}
+hottest <- names(weather)[which.max(weather)]
+hottest
+coldest <- names(weather)[which.min(weather)]
+coldest
+```
+
+The day with the hottest temperature is Thursday. The day with the coldest temperature is Wednesday.
+
+4. Create a barplot that illustrates the temperature over the week. The title of the plot should read "Temperature of Each Day" and the y-axis label should read "Degrees"
+
+```{r}
+barplot(weather, 
+        main = 'Temperature of Each Day', 
+        ylab = 'Degrees',
+        names.arg = day)
+```
+
