@@ -1,0 +1,118 @@
+---
+title: "PLS 202: Module 2 Assignment"
+author: "Anna Francisco"
+output: html_document
+---
+
+Download and open the assignment2.Rdata file from D2L. It is a dataset with three variables: `country`, `dem1999`, `dem2016` which gives the country's democracy score (how democratic it is) for the year 1999, and `dem2016` which gives the same for the year 2016. Feel free to use slides, readings, or the internet to help with the assignment.
+
+# Question 1
+
+1. What were the mean democracy scores in 1999 and 2016? (Hint: don't forget to tell R about missing values?)
+
+```{r}
+load('assignment2.Rdata')
+mean_dem1999 <- mean(polity$dem1999, na.rm = TRUE)
+mean_dem2016 <- mean(polity$dem2016, na.rm = TRUE)
+mean_dem1999
+mean_dem2016
+```
+
+
+2. What about the minimum and maximum values from each year?
+
+```{r}
+min_dem1999 <- min(polity$dem1999, na.rm = TRUE)
+max_dem1999 <- max(polity$dem1999, na.rm = TRUE)
+min_dem2016 <- min(polity$dem2016, na.rm = TRUE)
+max_dem2016 <- max(polity$dem2016, na.rm = TRUE)
+min_dem1999
+max_dem1999
+min_dem2016
+max_dem2016
+```
+
+
+3. Print the first row in the polity dataset (hint: don't forget commas!).
+
+```{r}
+first_row <- polity[1, ]
+first_row
+```
+
+
+# Question 2
+
+1. List the countries that had a democracy rating of 2 in 2016 (hint: there are 4) (another hint: R is funky and will give you some rows that are all `<NA>`, you can ignore these).
+
+```{r}
+countries_dem2_2016 <- polity$country[polity$dem2016 == 2]
+countries_dem2_2016
+```
+
+
+2. Did any of these countries also have a democracy rating of 2 in 1999? Which ones?
+
+```{r}
+countries_dem2_1999 <- polity$country[polity$dem1999 == 2]
+common_countries_dem2 <- intersect(countries_dem2_2016, countries_dem2_1999)
+common_countries_dem2
+```
+
+
+3. What was Jamaica's democracy score in 2016?
+
+```{r}
+jamaica_2016 <- polity$dem2016[polity$country == 'Jamaica']
+jamaica_2016
+```
+
+
+# Question 3
+
+1. Create a new dataset which only contains observations from Russia, call it `russia_data`.
+
+```{r}
+russia_data <- subset(polity, country == 'Russia')
+
+```
+
+
+2. Print the new dataset, did Russia's democracy score change from 1999 to 2016?
+
+```{r}
+russia_data
+```
+Russia's democracy score went up by one.
+
+# Question 4
+
+1. Sort the dataset by democracy scores in 1999. Call this new object `dem_sorted`.
+
+```{r}
+dem_sorted <- polity[order(polity$dem1999), ]
+```
+
+
+2. Print the first few values of this new dataset.
+
+```{r}
+head(dem_sorted)
+```
+
+
+3. Create a dummy variable called `dem` that takes the value of 1 if the democracy score in 1999 is greater than 7, otherwise is 0.
+
+```{r}
+polity$dem <- ifelse(polity$dem1999 > 7, 1, 0)
+```
+
+
+4. What is the mean of this variable (i.e. what percent of countries were democracies in 1999)
+
+
+```{r}
+mean_dem <- mean(polity$dem, na.rm = TRUE)
+mean_dem
+```
+
